@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Optional: uncomment to keep it off Google until you're ready -->
+  <!-- <meta name="robots" content="noindex,nofollow" /> -->
+  <title>Book your WOF today — one‑tap call or quick form</title>
+  <meta name="description" content="Same-day WOF • One‑tap call • Callback within 10–30 minutes during business hours." />
+
+  <!-- GA4 (replace G-XXXXXXX) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX'); // <- replace
+    function trackPhone(place){ dataLayer.push({event:'phone_click', placement:place}); }
+    function trackCTA(svc){ dataLayer.push({event:'cta_click', service:svc}); }
+    function trackLead(){ dataLayer.push({event:'lead_submit'}); }
+  </script>
+
+  <style>
+    :root{--brand:#0f766e;--bg:#0b1215;--fg:#e6f2f0;--muted:#9fb7b3;--card:#0f1519;--accent:#10b981;}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:980px;margin:0 auto;padding:16px}
+    .hero{padding:64px 16px 24px;background:linear-gradient(180deg,#0d181a,#0b1215)}
+    h1{font-size:32px;line-height:1.15;margin:0 0 12px}
+    .lead{color:var(--muted);margin:0 0 20px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:12px;font-weight:600;border:1px solid #1f2a2e;background:#142026;color:#e8f6f3;}
+    .btn--primary{background:var(--brand);border-color:var(--brand);}
+    .btn--ghost{background:transparent}
+    .grid{display:grid;gap:14px}
+    .grid--services{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+    .card{background:var(--card);border:1px solid #172126;border-radius:16px;padding:16px}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .muted{color:var(--muted)}
+    .section{padding:20px 16px}
+    .section h2{font-size:22px;margin:0 0 10px}
+    .reviews{display:grid;gap:12px}
+    .review{border-left:3px solid var(--brand);padding:10px 12px;background:#0c1619;border-radius:8px}
+    .faq details{background:#0c1619;border:1px solid #182126;border-radius:12px;padding:10px;margin:8px 0}
+    form{display:grid;gap:10px}
+    input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #1c262b;background:#0d1619;color:#e8f6f3}
+    label{font-size:14px;color:#b7c7c4}
+    .success{display:none;border:1px solid #174036;background:#0e1f1c;color:#c9f7e9;border-radius:12px;padding:12px}
+    .map{height:220px;border-radius:12px;filter:saturate(0.9) contrast(1.05)}
+    .sticky{position:fixed;left:0;right:0;bottom:0;backdrop-filter:blur(10px);background:rgba(10,16,18,0.92);border-top:1px solid #162126;display:flex;gap:10px;justify-content:center;padding:10px;z-index:50}
+    .sticky .btn{flex:1;max-width:420px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{font-size:12px;border:1px solid #1c262b;padding:6px 10px;border-radius:999px;color:#cde4e1}
+    footer{color:#95aba7;border-top:1px solid #152126;padding:40px 16px;margin-top:40px}
+    @media(min-width:680px){h1{font-size:40px}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="badges">
+        <span class="badge" id="openState">Open now</span>
+        <span class="badge">Mobile-first</span>
+        <span class="badge">Google-review backed</span>
+      </div>
+      <h1>Book your WOF today — one‑tap call or quick form</h1>
+      <p class="lead">Same-day slots • 25–40 mins WOF • Free re-check within <span id="recheckDays">28</span> days</p>
+      <div class="cta-row">
+        <a id="callHero" class="btn btn--primary" href="tel:+64xxxxxxxxx" onclick="trackPhone('hero')">📞 Call now</a>
+        <a class="btn btn--ghost" href="#callback" onclick="trackCTA('callback')">Request a callback</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Services -->
+    <section class="section" aria-labelledby="services">
+      <h2 id="services">Services</h2>
+      <div class="grid grid--services">
+        <article class="card">
+          <h3>WOF (Warrant of Fitness)</h3>
+          <p class="muted">Typically 25–40 mins. Same‑day most weekdays.</p>
+          <a class="btn btn--primary" href="#callback" data-service="WOF" onclick="prefill('WOF'); trackCTA('wof');">Book WOF</a>
+        </article>
+        <article class="card">
+          <h3>Tyres</h3>
+          <p class="muted">Share your tyre size (e.g., 205/55R16). We'll check stock today.</p>
+          <a class="btn" href="#callback" data-service="Tyres" onclick="prefill('Tyres'); trackCTA('tyres');">Get tyre quote</a>
+        </article>
+        <article class="card">
+          <h3>Servicing</h3>
+          <p class="muted">Drop‑off available; we text when ready.</p>
+          <a class="btn" href="#callback" data-service="Servicing" onclick="prefill('Servicing'); trackCTA('servicing');">Drop off today</a>
+        </article>
+        <article class="card">
+          <h3>Diagnostics</h3>
+          <p class="muted">Describe the issue; we'll call back to confirm.</p>
+          <a class="btn" href="#callback" data-service="Diagnostics" onclick="prefill('Diagnostics'); trackCTA('diagnostics');">Describe & request call</a>
+        </article>
+        <article class="card">
+          <h3>Panel & Paint</h3>
+          <p class="muted">Upload 2–3 photos for a quick range.</p>
+          <a class="btn" href="#callback" data-service="Panel & Paint" onclick="prefill('Panel & Paint'); trackCTA('panel');">Upload & estimate</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section" aria-labelledby="reviews">
+      <h2 id="reviews">What customers say</h2>
+      <div class="reviews" id="reviewsList">
+        <!-- Replace with live embed if you prefer; placeholders below -->
+        <blockquote class="review">“Super quick WOF, friendly team. Will be back!” — <strong>Alex R.</strong></blockquote>
+        <blockquote class="review">“Booked in the morning, tyres sorted by lunch.” — <strong>Priya K.</strong></blockquote>
+        <blockquote class="review">“Clear comms, fair pricing. 5⭐” — <strong>Hemi T.</strong></blockquote>
+      </div>
+    </section>
+
+    <!-- WOF prep / badges -->
+    <section class="section" aria-labelledby="prep">
+      <h2 id="prep">Before you come in</h2>
+      <ul class="muted">
+        <li>Bring your keys and vehicle.</li>
+        <li>Allow ~25–40 minutes; busy 8–10am & 3–5pm.</li>
+        <li>If your car fails, we'll list fixes. Re‑check free within <span id="recheckDays2">28</span> days.</li>
+      </ul>
+      <p class="muted" style="margin-top:8px;font-size:13px">Times & pricing depend on vehicle and workload. We'll confirm by phone.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" aria-labelledby="faq">
+      <h2 id="faq">FAQ</h2>
+      <details><summary>Can I get a same‑day WOF?</summary><div class="muted">Usually yes. Choose a time window below or leave your number; we'll confirm by phone.</div></details>
+      <details><summary>How long is servicing?</summary><div class="muted">Varies by model/mileage. Drop‑off available; we text when ready.</div></details>
+      <details><summary>Can you quote tyres online?</summary><div class="muted">Share your tyre size (e.g., 205/55R16) and any brand preference; we'll check stock and call back.</div></details>
+      <details><summary>Do you need my rego?</summary><div class="muted">We can look it up on site if needed.</div></details>
+    </section>
+
+    <!-- Callback / booking intent form -->
+    <section class="section" id="callback" aria-labelledby="formTitle">
+      <h2 id="formTitle">Request a callback / booking window</h2>
+      <div id="formSuccess" class="success">Thanks! We'll call you within <strong>10–30 minutes</strong> during business hours to confirm details.</div>
+      <form id="leadForm" method="POST" action="https://formspree.io/f/XXXXXXXX" onsubmit="return submitLead(event)">
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" required />
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" inputmode="tel" autocomplete="tel" required />
+          </div>
+        </div>
+        <div>
+          <label for="email">Email (optional)</label>
+          <input id="email" name="email" type="email" />
+        </div>
+        <div>
+          <label for="service">Service</label>
+          <select id="service" name="service" onchange="toggleServiceFields()" required>
+            <option value="WOF">WOF</option>
+            <option value="Tyres">Tyres</option>
+            <option value="Servicing">Servicing</option>
+            <option value="Diagnostics">Diagnostics</option>
+            <option value="Panel & Paint">Panel & Paint</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="window">Preferred time window</label>
+          <select id="window" name="window" required>
+            <option value="today_am">Today AM</option>
+            <option value="today_pm">Today PM</option>
+            <option value="tomorrow_am">Tomorrow AM</option>
+            <option value="tomorrow_pm">Tomorrow PM</option>
+            <option value="flexible">Flexible</option>
+          </select>
+        </div>
+        <div id="tyreFields" style="display:none">
+          <label for="tyresize">Tyre size (e.g., 205/55R16) & brand preference (optional)</label>
+          <input id="tyresize" name="tyre_info" placeholder="205/55R16, Bridgestone? (optional)" />
+        </div>
+        <div id="vehicleFields" style="display:none">
+          <label for="vehicle">Make & model (and last service if known)</label>
+          <input id="vehicle" name="vehicle" placeholder="e.g., Toyota Corolla 2016, last service 10,000km" />
+        </div>
+        <div>
+          <label for="notes">Symptoms / notes (you can paste a photo link)</label>
+          <textarea id="notes" name="notes" rows="4"></textarea>
+        </div>
+        <!-- Hidden: UTM + page -->
+        <input type="hidden" id="utm_source" name="utm_source" />
+        <input type="hidden" id="utm_medium" name="utm_medium" />
+        <input type="hidden" id="utm_campaign" name="utm_campaign" />
+        <input type="hidden" id="page_url" name="page_url" />
+        <button class="btn btn--primary" type="submit">Submit & get a call back</button>
+      </form>
+    </section>
+
+    <!-- Map / contact -->
+    <section class="section" aria-label="Map & contact">
+      <div class="grid" style="grid-template-columns:1.2fr 1fr;gap:12px">
+        <iframe class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Auckland&z=12&output=embed" title="Map"></iframe>
+        <div class="card">
+          <h3>Contact & hours</h3>
+          <p class="muted" id="address">123 Sample Rd, Auckland</p>
+          <p class="muted"><strong>Mon–Fri:</strong> 8:00–17:00<br/><strong>Sat:</strong> 9:00–13:00<br/><strong>Sun:</strong> Closed</p>
+          <p><a id="callContact" class="btn btn--primary" href="tel:+64xxxxxxxxx" onclick="trackPhone('contact')">📞 Call {{brand}}</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky" id="stickyBar">
+    <a id="callSticky" class="btn btn--primary" href="tel:+64xxxxxxxxx" onclick="trackPhone('sticky')">📞 Call now</a>
+    <a class="btn btn--ghost" href="#callback" onclick="trackCTA('callback_sticky')">Request a callback</a>
+  </div>
+
+  <footer class="container">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <small>© <span id="year"></span> <span id="brand">Your Brand Auto</span> • <span id="footerAddr">123 Sample Rd, Auckland</span></small>
+      <small><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Disclaimer</a></small>
+    </div>
+  </footer>
+
+  <!-- LocalBusiness JSON-LD (fill in values) -->
+  <script type="application/ld+json" id="schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutomotiveBusiness",
+    "name": "Your Brand Auto",
+    "telephone": "+64xxxxxxxxx",
+    "address": {"@type":"PostalAddress","streetAddress":"123 Sample Rd","addressLocality":"Auckland","addressCountry":"NZ"},
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"17:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"09:00","closes":"13:00"}
+    ]
+  }
+  </script>
+
+  <script>
+    // ====== EDIT THESE FIELDS ======
+    const CONFIG = {
+      brand: 'Your Brand Auto',
+      phone: '+64xxxxxxxxx',
+      address: '123 Sample Rd, Auckland',
+      recheckDays: 28,
+      hours: { // Pacific/Auckland time
+        mon: ['08:00','17:00'],
+        tue: ['08:00','17:00'],
+        wed: ['08:00','17:00'],
+        thu: ['08:00','17:00'],
+        fri: ['08:00','17:00'],
+        sat: ['09:00','13:00'],
+        sun: null // closed
+      },
+      formEndpoint: 'https://formspree.io/f/XXXXXXXX' // replace
+    };
+    // =================================
+
+    // Populate brand/phone/address
+    function setText(id, v){ const el=document.getElementById(id); if(el) el.textContent = v; }
+    function setHref(id, v){ const el=document.getElementById(id); if(el) el.setAttribute('href', `tel:${v}`); }
+    setText('brand', CONFIG.brand); setText('footerAddr', CONFIG.address); setText('address', CONFIG.address);
+    setText('recheckDays', CONFIG.recheckDays); setText('recheckDays2', CONFIG.recheckDays);
+    setHref('callHero', CONFIG.phone); setHref('callSticky', CONFIG.phone); setHref('callContact', CONFIG.phone);
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('leadForm').setAttribute('action', CONFIG.formEndpoint);
+
+    // Open/Closed badge + sticky state (Pacific/Auckland)
+    function isOpenNow(){
+      try{
+        const tz='Pacific/Auckland';
+        const now = new Date();
+        const parts = new Intl.DateTimeFormat('en-NZ',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:tz,weekday:'short'}).formatToParts(now);
+        const day = parts.find(p=>p.type==='weekday').value.toLowerCase().slice(0,3); // mon
+        const hm = parts.filter(p=>p.type==='hour'||p.type==='minute').map(p=>p.value).join(':');
+        const hrs = CONFIG.hours[day]; if(!hrs) return false;
+        return hm >= hrs[0] && hm <= hrs[1];
+      }catch(e){ return true; }
+    }
+    function refreshOpenState(){
+      const open = isOpenNow();
+      const badge = document.getElementById('openState');
+      badge.textContent = open? 'Open now' : 'Closed — leave your number';
+      const callBtn = document.getElementById('callSticky');
+      callBtn.style.display = open? 'inline-flex' : 'none';
+    }
+    refreshOpenState(); setInterval(refreshOpenState, 60*1000);
+
+    // Prefill service via buttons
+    function prefill(service){
+      const sel = document.getElementById('service'); sel.value = service; toggleServiceFields();
+      document.getElementById('callback').scrollIntoView({behavior:'smooth'});
+    }
+    window.prefill = prefill;
+
+    // Dynamic fields by service
+    function toggleServiceFields(){
+      const v = document.getElementById('service').value;
+      document.getElementById('tyreFields').style.display = (v==='Tyres')? 'block':'none';
+      document.getElementById('vehicleFields').style.display = (v==='Servicing' || v==='Diagnostics')? 'block':'none';
+    }
+    toggleServiceFields();
+
+    // Persist UTM & fill hidden fields
+    function getParams(){ return new URLSearchParams(location.search); }
+    (function initUTM(){
+      const p=getParams();
+      const src=p.get('utm_source'); const med=p.get('utm_medium'); const camp=p.get('utm_campaign');
+      if(src||med||camp){ sessionStorage.setItem('utm_source', src||''); sessionStorage.setItem('utm_medium', med||''); sessionStorage.setItem('utm_campaign', camp||''); }
+      document.getElementById('utm_source').value = sessionStorage.getItem('utm_source')||'';
+      document.getElementById('utm_medium').value = sessionStorage.getItem('utm_medium')||'';
+      document.getElementById('utm_campaign').value = sessionStorage.getItem('utm_campaign')||'';
+      document.getElementById('page_url').value = location.href;
+    })();
+
+    // Form submit (Formspree)
+    async function submitLead(e){
+      e.preventDefault(); trackLead();
+      const form = e.target; const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try{
+        const res = await fetch(form.action, { method:'POST', body: new FormData(form), headers:{'Accept':'application/json'} });
+        if(res.ok){ form.reset(); toggleServiceFields(); document.getElementById('formSuccess').style.display='block'; }
+        else { alert('Sorry, something went wrong. Please call us instead.'); }
+      }catch(err){ alert('Network error. Please call us.'); }
+      btn.disabled = false; btn.textContent = 'Submit & get a call back';
+      return false;
+    }
+    window.submitLead = submitLead;
+  </script>
+</body>
+</html>
