@@ -1,0 +1,1 @@
+const $=jQuery;const wp_flatpickr=new(function(){const self=this;let cache={};self.init=function(){$(".wpflatpickr--dp").flatpickr({dateFormat:"d-m-Y"});$(".wpflatpickr--tp").flatpickr({enableTime:!0,noCalendar:!0,dateFormat:"H:i",time_24hr:!1})};$(document).ready(function(){try{self.init()}catch(e){console.warn("Error in global.js");console.log(e)}})})
